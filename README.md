@@ -99,3 +99,37 @@ Only Owner Restrictions: Functions like setToken and batchCreateVesting are rest
 Validations: The contract checks for invalid durations, zero amounts, and correct ERC20 transfers.
 
 
+
+1. Staking Unstaking Selection Issue
+
+Current Behavior:
+	If a user stakes 100K for 3 months and then stakes 100K for 6 months, when
+	unstaking, they cannot choose which one to unstake first
+
+Expected Fix:
+	Implement a mechanism to differentiate stakes based on their duration.
+	Allow users to select specific staking periods when unstaking.
+	
+	
+2. Restriction on Multiple Staking Durations
+Current Behavior:
+	Users can stake on different staking products (e.g., 3 months and 6 months)
+	simultaneously.
+	
+Expected Fix:
+	If a user is already staked in a 3-month product, they should not be able to stake in
+	any other duration.
+	Return an error message when attempting to stake in multiple durations.
+	
+	
+We currently have some confusion regarding this question. We can add static functionality to the code now, but we will implement dynamic functionality in the future.
+
+
+
+3. Vesting: Adding Users Manually
+Question from Client:
+Can user addresses and amounts now be manually added to the vesting contract?
+Expected Fix (if not supported):
+Implement a function for manual address and amount addition.
+
+We have fixed this issue; now, we only need the user's approval for the contract to transfer tokens. The admin can transfer tokens on behalf of the user.
